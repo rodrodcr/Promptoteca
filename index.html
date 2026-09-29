@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101a2d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Promptoteca</title>
+<style>
+:root{--navy:#101a2d;--navy2:#17233a;--ink:#172033;--muted:#7e8798;--line:#d9dee7;--bg:#f5f6f8;--card:#fff;--blue:#cbdcff;--blue2:#b9cff6}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+button,input,textarea,select{font:inherit}.app{min-height:100vh}.top{height:82px;background:var(--navy);color:#e7ebf3;display:flex;align-items:center;justify-content:space-between;padding:env(safe-area-inset-top) 26px 0;position:sticky;top:0;z-index:20}.topL,.topR{display:flex;gap:14px;align-items:center}.iconbtn{border:0;background:none;color:inherit;font-size:25px;padding:10px}.status{color:#b5bdcb;font-size:17px}
+.drawer{position:fixed;inset:0 auto 0 0;width:min(78vw,390px);background:var(--navy);color:#dbe1ec;z-index:50;transform:translateX(-105%);transition:.22s ease;box-shadow:10px 0 30px #0003;display:flex;flex-direction:column}.drawer.open{transform:none}.scrim{position:fixed;inset:0;background:#0007;z-index:40;display:none}.scrim.open{display:block}
+.brand{padding:72px 24px 48px;font-size:30px;font-weight:800;color:white}.brand i{font-family:Georgia,serif;font-size:44px;font-weight:400;color:#d7e4ff;margin-right:12px}.sidebody{padding:0 0 20px;overflow:auto;flex:1}.sideLabel{font-size:13px;letter-spacing:.18em;color:#909bad;padding:0 22px 18px}.sideRow{display:flex;align-items:center;gap:15px;padding:16px 22px;color:#bac3d2}.sideRow.active{background:var(--blue);color:#17243d;border-radius:0 12px 12px 0;font-weight:800}.sideRow .count{margin-left:auto}.section{margin-top:34px}.sectionHead{display:flex;justify-content:space-between;padding:0 22px 14px;color:#909bad;letter-spacing:.12em;font-size:13px}.backup{border-top:1px solid #354056;margin:28px 16px 0;padding:24px 8px}.backup h3{margin:0 0 8px;font-size:17px;font-weight:500}.backup p{color:#909bad;font-size:14px}.backupBtns{display:flex;gap:10px}.ghost{border:1px solid #3b465a;background:transparent;color:#9fa9ba;border-radius:9px;padding:12px 14px}.profile{border-top:1px solid #354056;margin:18px 16px 0;padding:24px 16px;display:flex;gap:14px;align-items:center}.avatar{width:46px;height:46px;border-radius:50%;border:1px solid #6d7789;background:#28354b;display:grid;place-items:center}.profile small{display:block;color:#909bad;margin-top:5px}
+main{max-width:920px;margin:auto;padding:54px 38px 40px}.eyebrow{letter-spacing:.19em;color:#758095;font-size:14px;font-weight:600}.hero h1{font-size:54px;line-height:1;margin:24px 0 24px;letter-spacing:-.04em}.stats{color:#7f8796;font-size:18px}.primary{border:1px solid #a9c1eb;background:var(--blue);color:#15213a;font-weight:750;border-radius:12px;padding:16px 22px;box-shadow:0 2px 0 #c7ced9}.new{float:right;margin-top:-78px}.searchrow{display:flex;gap:14px;margin-top:42px}.searchbox{flex:1;display:flex;align-items:center;background:white;border:1px solid var(--line);border-radius:12px;padding:0 16px}.searchbox input{width:100%;border:0;outline:0;background:transparent;padding:17px 12px;font-size:18px;color:var(--ink)}.shortcut{width:58px;border:1px solid var(--line);background:#fafbfc;border-radius:12px;font-size:24px;color:#5f6879}.chips{display:flex;gap:12px;align-items:center;margin-top:28px}.chip{border:0;background:#e4e7ed;border-radius:9px;padding:13px 16px;font-weight:750;color:#243149}.chip.alt{background:transparent;border:1px dashed #aeb8c8;font-weight:500}.listhead{border-top:1px solid var(--line);margin-top:28px;padding-top:24px;display:flex;justify-content:space-between;color:#7f8796}.empty{margin-top:26px;background:white;border:1px solid var(--line);border-radius:15px;min-height:390px;display:grid;place-items:center;text-align:center;padding:40px}.brace{width:82px;height:82px;border-radius:22px;background:#dce7fa;display:grid;place-items:center;font:36px ui-monospace,monospace;margin:auto}.empty h2{font-size:30px;margin:28px 0 12px}.empty p{font-size:18px;line-height:1.6;color:#7f8796;max-width:520px}.darkbtn{background:#14213b;color:white;border:0;border-radius:10px;padding:16px 25px;font-weight:750;font-size:17px}.linkbtn{border:0;background:none;color:#52688f;text-decoration:underline;font-size:16px;margin-top:20px}.tip{border-top:1px solid var(--line);margin-top:28px;padding:24px 10px;color:#667187}.promptCard{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px}.promptTop{display:flex;justify-content:space-between;gap:12px}.promptCard h3{margin:0 0 8px}.promptCard p{color:#687286;white-space:pre-wrap}.tag{display:inline-block;background:#edf1f7;border-radius:99px;padding:5px 9px;font-size:12px;margin:3px}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{border:1px solid var(--line);background:#f7f8fa;border-radius:8px;padding:8px 10px}
+.modal{position:fixed;inset:0;background:#0007;z-index:80;display:none;align-items:flex-end;justify-content:center}.modal.open{display:flex}.sheet{background:white;width:min(720px,100%);border-radius:22px 22px 0 0;padding:24px 22px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}.sheet h2{margin:0 0 20px}.field{margin:14px 0}.field label{display:block;font-size:13px;color:#697386;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;border:1px solid #ccd3df;border-radius:10px;padding:13px;background:white}.field textarea{min-height:160px;resize:vertical}.modalActions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}.secondary{border:1px solid #ccd3df;background:white;border-radius:9px;padding:12px 16px}.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:#111b2e;color:white;padding:12px 18px;border-radius:10px;z-index:100;display:none}
+@media(max-width:650px){.top{height:76px;padding-left:16px;padding-right:16px}.top .title{font-size:17px}main{padding:42px 20px 30px}.hero h1{font-size:43px;margin:22px 0 24px}.stats{font-size:17px}.new{float:none;width:100%;margin:34px 0 0;padding:17px}.searchrow{margin-top:28px}.searchbox input{font-size:17px}.chips{overflow:auto}.empty{min-height:360px;padding:30px 20px}.empty h2{font-size:27px}.drawer{width:78vw}.brand{padding-top:65px}.promptTop{display:block}.actions{margin-top:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="topL"><button class="iconbtn" id="menuBtn" aria-label="Menú">▥</button><span class="title">Mi biblioteca</span></div><div class="topR"><span>☁</span><span class="status" id="status">Guardado local</span></div></header>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+ <div class="brand"><i>P·</i> Promptoteca</div>
+ <div class="sidebody">
+  <div class="sideLabel">ESPACIO PERSONAL</div>
+  <div class="sideRow active" data-filter="all">▥ <span>Todos los prompts</span><span class="count" id="sideTotal">0</span></div>
+  <div class="section"><div class="sectionHead"><span>CARPETAS</span><button class="iconbtn" id="sideAddCat">＋</button></div><div id="sideCats"></div><div class="sideRow" id="sideNewCat">＋ <span>Nueva categoría</span></div></div>
+  <div class="section"><div class="sideLabel">ETIQUETAS</div><div class="sideRow"><span>Añádelas al crear un prompt.</span></div></div>
+  <div class="backup"><h3>Respaldo de biblioteca</h3><p>Respalda tus prompts en JSON.</p><div class="backupBtns"><button class="ghost" id="exportBtn">⇩ Exportar</button><button class="ghost" id="importBtn">⇧ Importar</button></div><input id="importFile" type="file" accept="application/json" hidden><div class="sideRow" id="helpBtn" style="padding-left:0;margin-top:22px">⌘ <span>Atajos y ayuda</span></div></div>
+  <div class="profile"><div class="avatar">RR</div><div>Rodrigo<small>Biblioteca privada</small></div></div>
+ </div>
+</aside>
+
+<main>
+ <section class="hero"><div class="eyebrow">BIBLIOTECA / PERSONAL</div><h1>Tu colección.</h1><div class="stats"><span id="total">0</span> prompts guardados &nbsp; / &nbsp; <span id="catTotal">0</span> categorías</div><button class="primary new" id="newBtn">＋ &nbsp; Nuevo prompt</button></section>
+ <div class="searchrow"><div class="searchbox">⌕<input id="search" placeholder="Buscar por título, contenido, etiqueta o categoría"></div><button class="shortcut" id="focusBtn">⌘</button></div>
+ <div class="chips"><button class="chip" data-filter="all">Todos&nbsp;&nbsp; <span id="chipTotal">0</span></button><button class="chip alt" id="addCat">＋ &nbsp; Categoría</button></div>
+ <div class="listhead"><span id="shownCount">0 prompts</span><span>Más recientes primero</span></div>
+ <div id="list"></div>
+ <div class="tip">{ } &nbsp; <b>Hazlo reutilizable.</b> Usa <code>[tema]</code> o <code>[estilo]</code> para rellenar los detalles antes de copiar.</div>
+</main>
+</div>
+
+<div class="modal" id="promptModal"><div class="sheet"><h2 id="modalTitle">Nuevo prompt</h2>
+ <div class="field"><label>Título</label><input id="pTitle" maxlength="120"></div>
+ <div class="field"><label>Prompt</label><textarea id="pContent" placeholder="Escribe tu prompt. Puedes usar variables como [tema] o [estilo]."></textarea></div>
+ <div class="field"><label>Categoría</label><select id="pCat"></select></div>
+ <div class="field"><label>Etiquetas (separadas por comas)</label><input id="pTags"></div>
+ <div class="modalActions"><button class="secondary" data-close="promptModal">Cancelar</button><button class="darkbtn" id="savePrompt">Guardar prompt</button></div>
+</div></div>
+
+<div class="modal" id="catModal"><div class="sheet"><h2>Nueva categoría</h2><div class="field"><label>Nombre</label><input id="catName" maxlength="60"></div><div class="modalActions"><button class="secondary" data-close="catModal">Cancelar</button><button class="darkbtn" id="saveCat">Crear categoría</button></div></div></div>
+<div class="modal" id="helpModal"><div class="sheet"><h2>Atajos y ayuda</h2><p><b>⌘/Ctrl + K</b> enfoca la búsqueda.</p><p>Usa variables entre corchetes, por ejemplo <code>[tema]</code>. Al copiar, Promptoteca te pedirá completar cada variable.</p><div class="modalActions"><button class="darkbtn" data-close="helpModal">Cerrar</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(()=>{"use strict";
+const KEY="promptoteca_single_v3";
+let db={prompts:[],categories:[]}, editId=null, filter="all";
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&Array.isArray(x.prompts)&&Array.isArray(x.categories))db=x}catch(e){}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));$("#status").textContent="Guardado local"}
+function esc(s=""){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function toast(t){const x=$("#toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",1600)}
+function openModal(id){$("#"+id).classList.add("open")} function closeModal(id){$("#"+id).classList.remove("open")}
+function openDrawer(){ $("#drawer").classList.add("open");$("#scrim").classList.add("open") } function closeDrawer(){ $("#drawer").classList.remove("open");$("#scrim").classList.remove("open") }
+function catName(id){return db.categories.find(c=>c.id===id)?.name||"Sin categoría"}
+function renderCats(){
+ $("#catTotal").textContent=db.categories.length;
+ $("#pCat").innerHTML='<option value="">Sin categoría</option>'+db.categories.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("");
+ $("#sideCats").innerHTML='<div class="sideRow" data-filter="uncat">▱ <span>Sin categoría</span><span class="count">'+db.prompts.filter(p=>!p.categoryId).length+'</span></div>'+db.categories.map(c=>`<div class="sideRow" data-filter="${c.id}">▱ <span>${esc(c.name)}</span><span class="count">${db.prompts.filter(p=>p.categoryId===c.id).length}</span></div>`).join("");
+ $$("#sideCats [data-filter]").forEach(x=>x.onclick=()=>{filter=x.dataset.filter;closeDrawer();render()});
+}
+function filtered(){
+ let a=[...db.prompts],q=$("#search").value.trim().toLowerCase();
+ if(filter==="uncat")a=a.filter(p=>!p.categoryId);else if(filter!=="all")a=a.filter(p=>p.categoryId===filter);
+ if(q)a=a.filter(p=>[p.title,p.content,catName(p.categoryId),(p.tags||[]).join(" ")].join(" ").toLowerCase().includes(q));
+ return a.sort((a,b)=>b.updated-a.updated)
+}
+function render(){
+ renderCats(); const a=filtered(),n=db.prompts.length;
+ $("#total").textContent=$("#chipTotal").textContent=$("#sideTotal").textContent=n;
+ $("#shownCount").textContent=`${a.length} prompt${a.length===1?"":"s"}`;
+ if(!a.length){
+  $("#list").innerHTML=`<div class="empty"><div><div class="brace">{ }</div><h2>${n?"No encontramos resultados.":"Dale un lugar a tus ideas."}</h2><p>${n?"Prueba otra búsqueda o categoría.":"Guarda ese prompt que siempre vuelves a escribir. Estará aquí cuando lo necesites."}</p>${n?"":'<button class="darkbtn" id="emptyCreate">＋ &nbsp; Crear un prompt</button><br><button class="linkbtn" id="sampleBtn">Probar una plantilla de ejemplo</button>'}</div></div>`;
+  $("#emptyCreate")?.addEventListener("click",newPrompt); $("#sampleBtn")?.addEventListener("click",sample)
+ } else $("#list").innerHTML=a.map(p=>`<article class="promptCard"><div class="promptTop"><div><h3>${esc(p.title)}</h3><small>${esc(catName(p.categoryId))}</small></div><div class="actions"><button data-copy="${p.id}">Copiar</button><button data-edit="${p.id}">Editar</button><button data-del="${p.id}">Eliminar</button></div></div><p>${esc(p.content)}</p><div>${(p.tags||[]).map(t=>`<span class="tag">#${esc(t)}</span>`).join("")}</div></article>`).join("");
+ $$("[data-copy]").forEach(b=>b.onclick=()=>copyPrompt(b.dataset.copy));$$("[data-edit]").forEach(b=>b.onclick=()=>editPrompt(b.dataset.edit));$$("[data-del]").forEach(b=>b.onclick=()=>delPrompt(b.dataset.del));
+}
+function newPrompt(){editId=null;$("#modalTitle").textContent="Nuevo prompt";$("#pTitle").value=$("#pContent").value=$("#pTags").value="";$("#pCat").value="";openModal("promptModal")}
+function editPrompt(id){const p=db.prompts.find(x=>x.id===id);if(!p)return;editId=id;$("#modalTitle").textContent="Editar prompt";$("#pTitle").value=p.title;$("#pContent").value=p.content;$("#pCat").value=p.categoryId||"";$("#pTags").value=(p.tags||[]).join(", ");openModal("promptModal")}
+function delPrompt(id){if(confirm("¿Eliminar este prompt?")){db.prompts=db.prompts.filter(p=>p.id!==id);save();render()}}
+async function copyPrompt(id){let p=db.prompts.find(x=>x.id===id);if(!p)return;let txt=p.content;let vars=[...new Set([...txt.matchAll(/\[([^\]]+)\]/g)].map(m=>m[1]))];for(const v of vars){let val=prompt(`Completa [${v}]`,v);if(val!==null)txt=txt.replaceAll(`[${v}]`,val)}try{await navigator.clipboard.writeText(txt);toast("Prompt copiado")}catch(e){const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("Prompt copiado")}}
+function sample(){db.prompts.unshift({id:crypto.randomUUID?crypto.randomUUID():Date.now()+"",title:"Explicar un tema",content:"Explica [tema] con un estilo [estilo] para una persona con nivel [nivel]. Incluye ejemplos prácticos.",categoryId:"",tags:["plantilla","aprendizaje"],updated:Date.now()});save();render();toast("Plantilla agregada")}
+$("#savePrompt").onclick=()=>{let title=$("#pTitle").value.trim(),content=$("#pContent").value.trim();if(!title||!content)return alert("Agrega un título y el contenido del prompt.");let obj={id:editId||((crypto.randomUUID&&crypto.randomUUID())||Date.now()+""),title,content,categoryId:$("#pCat").value,tags:$("#pTags").value.split(",").map(x=>x.trim()).filter(Boolean),updated:Date.now()};if(editId)db.prompts=db.prompts.map(p=>p.id===editId?obj:p);else db.prompts.push(obj);save();closeModal("promptModal");render();toast("Prompt guardado")};
+function addCategory(){ $("#catName").value="";openModal("catModal");setTimeout(()=>$("#catName").focus(),50)}
+$("#saveCat").onclick=()=>{let name=$("#catName").value.trim();if(!name)return;if(db.categories.some(c=>c.name.toLowerCase()===name.toLowerCase()))return alert("Esa categoría ya existe.");db.categories.push({id:(crypto.randomUUID&&crypto.randomUUID())||Date.now()+"",name});save();closeModal("catModal");render();toast("Categoría creada")};
+$("#exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="promptoteca-respaldo.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)};
+$("#importBtn").onclick=()=>$("#importFile").click();$("#importFile").onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());if(!Array.isArray(x.prompts)||!Array.isArray(x.categories))throw 0;if(confirm("Esto reemplazará la biblioteca actual. ¿Continuar?")){db=x;save();render();toast("Respaldo importado")}}catch(err){alert("El archivo no es un respaldo válido de Promptoteca.")}e.target.value=""};
+$("#menuBtn").onclick=openDrawer;$("#scrim").onclick=closeDrawer;$("#newBtn").onclick=newPrompt;$("#addCat").onclick=addCategory;$("#sideAddCat").onclick=addCategory;$("#sideNewCat").onclick=addCategory;$("#helpBtn").onclick=()=>openModal("helpModal");$("#focusBtn").onclick=()=>$("#search").focus();$("#search").oninput=render;
+$$("[data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));$$(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id)}));
+document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("#search").focus()}});
+load();render();
+})();
+</script>
+</body></html>
